@@ -1,0 +1,16 @@
+{#
+  Ce code étend un modèle de base pour créer une page d'erreur de formulaire de commentaire dans une application Symfony/React. 
+  Il définit l'identifiant du corps de la page comme 'comment_form_error'. La page affiche un titre en rouge pour indiquer une erreur. 
+#}
+
+{% extends 'base.html.twig' %}
+
+{% block body_id 'comment_form_error' %}
+
+{% block main %}
+    <h1 class="text-danger">{{ 'title.comment_error'|trans }}</h1>
+
+    <div class="well">
+        {{ include('blog/_comment_form.html.twig') }}
+    </div>
+{% endblock %}

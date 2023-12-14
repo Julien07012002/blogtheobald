@@ -1,0 +1,17 @@
+{#
+  Ce code vérifie d'abord si un article a des étiquettes associées. S'il en a, il génère des balises de lien pour chacune de ces étiquettes. 
+  Chaque balise de lien affiche le nom de l'étiquette et est associée à une URL qui filtre les articles par cette étiquette
+#}
+
+{% if not post.tags.empty %}
+    <p class="post-tags">
+        {% for tag in post.tags %}
+            <a href="{{ path('blog_index', {'tag': tag.name == app.request.query.get('tag') ? null : tag.name}) }}"
+               class="label label-{{ tag.name == app.request.query.get('tag') ? 'success' : 'default' }}"
+            >
+                <i class="fa fa-tag"></i> {{ tag.name }}
+            </a>
+        {% endfor %}
+    </p>
+{% endif %}
+

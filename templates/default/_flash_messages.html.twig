@@ -1,0 +1,20 @@
+{#
+  Cette section de code vérifie s'il y a des messages flash stockés dans la session de l'application Symfony. 
+  Si des messages flash sont présents, ils sont affichés à l'utilisateur sous forme d'alertes colorées. 
+  Chaque type de message est associé à une classe CSS différente pour personnaliser l'apparence de l'alerte.
+#}
+
+{% if app.request.hasPreviousSession %}    <div class="messages">
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-dismissible alert-{{ type }} fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="{{ 'action.close'|trans }}">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    {{ message|trans }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endif %}

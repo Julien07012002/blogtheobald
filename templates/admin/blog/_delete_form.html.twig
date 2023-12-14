@@ -1,0 +1,13 @@
+{#
+  Ce code inclut un formulaire de confirmation pour la suppression d'un article dans l'application. 
+  Il affiche d'abord un modèle partiel '_delete_post_confirmation.html.twig' qui contient les détails de la confirmation de suppression.
+#}
+
+{{ include('blog/_delete_post_confirmation.html.twig') }}
+<form action="{{ url('admin_post_delete', {id: post.id}) }}" method="post" data-confirmation="true" id="delete-form">
+    <input type="hidden" name="token" value="{{ csrf_token('delete') }}" />
+    <button type="submit" class="btn btn-lg btn-block btn-danger">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+        {{ 'action.delete_post'|trans }}
+    </button>
+</form>
